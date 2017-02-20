@@ -1,0 +1,4 @@
+# Routes
+
+GET     /                           controllers.ProductSales.index
+GET     /health                     controllers.Health.healthCheck
