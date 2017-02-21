@@ -1,10 +1,10 @@
 import React from 'react';
 import { Router, Route, browserHistory } from 'react-router';
 
-import { App } from './containers/App';
+import { OrdersSummary } from './containers/OrdersSummary';
 
 export const Routes = () => (
   <Router history={browserHistory}>
-    <Route path="/" component={App} />
+    <Route path="/:country" component={OrdersSummary} />
   </Router>
 );

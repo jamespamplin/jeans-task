@@ -22,7 +22,7 @@ object ProductProvider {
   val allCountries = Set(
     "UK", "Ireland", "Germany", "France", "Spain", "Belgium", "Portugal", "Switzerland", "Netherlands", "Norway",
     "Poland", "Czech Republic", "Slovakia", "Hungary", "Slovenia", "Sweden"
-  )
+  ).map(_.toLowerCase.replace(' ', '-'))
 
   // Order weekday is Wednesday - start day 2016-01-06 06:00
   private val startDate = new DateTime(2016, 1, 6, 6, 0)
