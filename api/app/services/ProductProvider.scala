@@ -26,7 +26,7 @@ object ProductProvider {
 
   // Order weekday is Wednesday - start day 2016-01-06 06:00
   private val startDate = new DateTime(2016, 1, 6, 6, 0)
-  private val orderDates = 0 to 7 map { n => startDate.plusDays(n * 7) }
+  private val orderDates = 0 to 15 map { n => startDate.plusDays(n * 7) }
 
 
   private def generateData = for {
