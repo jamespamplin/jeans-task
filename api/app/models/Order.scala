@@ -5,7 +5,7 @@ import play.api.libs.json.Json
 import play.api.libs.json.Writes.jodaDateWrites
 
 
-case class Order(date: DateTime, product: Product, deliveryCountry: String, quantity: Int)
+case class Order(date: DateTime, product: Product, country: String, quantity: Int)
 
 
 object Order {
