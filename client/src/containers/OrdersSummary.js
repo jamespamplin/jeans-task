@@ -7,6 +7,7 @@ import { refreshOrders as refreshOrdersAction } from '../actions/orders';
 import { Navigation } from '../components/Navigation';
 import { OrderSizesSummary } from '../components/OrderSizesSummary';
 import { ManufacturersSummary } from '../components/ManufacturersSummary';
+import { MonthlySummary } from '../components/MonthlySummary';
 
 
 class StatelessOrdersSummary extends Component {
@@ -40,8 +41,10 @@ class StatelessOrdersSummary extends Component {
 
       return (
         <div>
-          <h2>Order Sizes for {selectedCountry}</h2>
+          <h2>Monthly summary</h2>
+          <MonthlySummary months={summary.getIn([selectedCountry, 'months'])} />
 
+          <h2>Order Sizes for {selectedCountry}</h2>
           <OrderSizesSummary sizes={summary.getIn([selectedCountry, 'sizes'], Map())} />
 
           <h2>Manufacturers for {selectedCountry}</h2>

@@ -1,4 +1,5 @@
 import { Map, Stack } from 'immutable';
+import moment from 'moment';
 
 import { receivedOrder, receivedAllOrders } from '../actions/orders';
 
@@ -31,6 +32,9 @@ const reduceSummary = (summary, order) => {
             .update(manufacturer, 0, curr => curr + quantity)
             .sort()
         )
+      )
+      .update('months', Map(), month =>
+        month.update(moment(order.date).format('MMMM'), 0, curr => curr + quantity)
       )
   );
 };
