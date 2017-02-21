@@ -1,12 +1,16 @@
-import { Map } from 'immutable';
+import { Map, Stack } from 'immutable';
 
-import { receivedOrder } from '../actions/orders';
+import { receivedOrder, receivedAllOrders } from '../actions/orders';
 
 const initialState = {
   total: 0,
+  buffer: Stack(),
   summary: Map(),
   error: null
 };
+
+const MAX_BUFFER_SIZE = 10000;
+
 
 const reduceSummary = (summary, order) => {
   const { country, quantity } = order;
@@ -32,14 +36,41 @@ const reduceSummary = (summary, order) => {
 };
 
 
+const flushBuffer = (state, buffer = state.buffer) => {
+  const { summary, total } = state;
+
+  return {
+    summary: buffer.reduce(reduceSummary, summary),
+    total: total + buffer.size,
+    buffer: buffer.clear(),
+    error: null
+  };
+};
+
+const updateStateWithOrder = (state, order) => {
+  const { summary, total } = state;
+  const buffer = state.buffer.push(order);
+
+  if (buffer.size >= MAX_BUFFER_SIZE) {
+    return flushBuffer(state, buffer);
+  }
+
+  return {
+    summary,
+    total,
+    buffer,
+    error: null
+  };
+};
+
+
 export const orders = (state = initialState, action) => {
   switch (action.type) {
     case receivedOrder.ACTION_TYPE:
-      return {
-        total: state.total + 1,
-        summary: reduceSummary(state.summary, action.payload),
-        error: null
-      };
+      return updateStateWithOrder(state, action.payload);
+
+    case receivedAllOrders.ACTION_TYPE:
+      return flushBuffer(state);
 
     default:
       return state;
