@@ -40,23 +40,35 @@ class StatelessOrdersSummary extends Component {
       if (!selectedCountry) { return null; }
 
       return (
-        <div>
-          <h2>Monthly summary</h2>
-          <MonthlySummary months={summary.getIn([selectedCountry, 'months'])} />
+        <div className="container">
+          <div className="row">
+            <h2>Order Summary for {selectedCountry}</h2>
+          </div>
 
-          <h2>Order Sizes for {selectedCountry}</h2>
-          <OrderSizesSummary sizes={summary.getIn([selectedCountry, 'sizes'], Map())} />
-
-          <h2>Manufacturers for {selectedCountry}</h2>
-          <ManufacturersSummary manufacturers={summary.getIn([selectedCountry, 'manufacturers'], Map())} />
+          <div className="row">
+            <div className="col">
+              <h3>Sizes by Gender</h3>
+              <OrderSizesSummary sizes={summary.getIn([selectedCountry, 'sizes'], Map())} />
+            </div>
+            <div className="col">
+              <div className="row">
+                <h3>Monthly summary</h3>
+                <MonthlySummary months={summary.getIn([selectedCountry, 'months'])} />
+              </div>
+              <div className="row">
+                <h3>Manufacturers</h3>
+                <ManufacturersSummary manufacturers={summary.getIn([selectedCountry, 'manufacturers'], Map())} />
+              </div>
+            </div>
+          </div>
         </div>
       );
     };
 
     return (
       <div>
-        <Navigation countries={countries} />
-        <p>Loaded: {total} orders</p>
+        <Navigation countries={countries} selectedCountry={selectedCountry} />
+        <p className="test-muted">Loaded: {total} orders</p>
 
         <Summary />
       </div>

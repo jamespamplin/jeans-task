@@ -14,7 +14,12 @@ export const OrderSizesSummary = ({ sizes }) => {
   );
 
   return (
-    <table>
+    <table className="table table-striped">
+      <thead>
+        <tr>
+          <th>Gender</th><th>Size</th><th>Total</th>
+        </tr>
+      </thead>
       <tbody>
         {allSizes.map(renderRow)}
       </tbody>

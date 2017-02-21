@@ -7,14 +7,19 @@ export const ManufacturersSummary = ({ manufacturers }) => {
       manufByGender.map((count, size) => [gender, size, count])
   );
 
-  const renderRow = ([gender, size, count]) => (
+  const renderRow = ([gender, manufacturer, count]) => (
     <tr>
-      <td>{gender}</td><td>{size}</td><td>{count}</td>
+      <td>{gender}</td><td>{manufacturer}</td><td>{count}</td>
     </tr>
   );
 
   return (
-    <table>
+    <table className="table table-striped">
+      <thead>
+        <tr>
+          <th>Gender</th><th>Manufacturer</th><th>Total</th>
+        </tr>
+      </thead>
       <tbody>
         {all.map(renderRow)}
       </tbody>

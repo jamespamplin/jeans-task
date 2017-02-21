@@ -20,8 +20,8 @@ object ProductProvider {
   val allStyles = Set("Bootcut", "Skinny", "Flares")
 
   val allCountries = Set(
-    "UK", "Ireland", "Germany", "France", "Spain", "Belgium", "Portugal", "Switzerland", "Netherlands", "Norway",
-    "Poland", "Czech Republic", "Slovakia", "Hungary", "Slovenia", "Sweden"
+    "UK", "Ireland", "Germany", "Spain", "Belgium", "Portugal", "Switzerland",
+    "Poland", "Czech Republic", "Slovakia", "Hungary", "Slovenia"
   ).map(_.toLowerCase.replace(' ', '-'))
 
   // Order weekday is Wednesday - start day 2016-01-06 06:00
