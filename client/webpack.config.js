@@ -54,7 +54,7 @@ module.exports = (env) => {
     devtool: isProd ? 'source-map' : 'eval',
     context: sourcePath,
     entry: {
-      app: './index.js',
+      app: ['babel-polyfill', './index.js'],
       vendor: ['react']
     },
     output: {
