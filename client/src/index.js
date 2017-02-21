@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom';
 import React from 'react';
 
 import { Routes } from './routes';
-import store from './store';
+import { store } from './store';
 
 ReactDOM.render(
   <Provider store={store}>
